@@ -23,10 +23,12 @@ console.log("******************");
 /* 
 2.- Dado el objeto empleados, extrae el email del empleado Luis --> Luis@gmail.com
 */
-let emailLuis = empleados[0].email;
-console.log("// Ejercicio 2");
+//let emailLuis = empleados[0].email;
+let [emailLuis] = [empleados[0].email];
+/* console.log("// Ejercicio 2");
 console.log( "ejercicio2()=", emailLuis );
 console.log("******************");
+ */
 
 
 /* 
@@ -54,7 +56,6 @@ const HIGH_TEMPERATURES = {
     today: 35,
     tomorrow: 32,
 };
-
 const maximaHoy = HIGH_TEMPERATURES.today;
 const maximaManana = HIGH_TEMPERATURES.tomorrow;
 
@@ -77,7 +78,7 @@ demás argumentos.
 function sumEveryOther(...n){
     
     let resultado = n.reduce((acum, valorActual) => acum + valorActual, 0);
-    return resultado
+    return resultado;
 }
 console.log("// Ejercicio 5");
 console.log( "sumEveryOther(11, 3, 12)=", sumEveryOther(11, 3, 12) );
@@ -146,7 +147,8 @@ function onlyUniques(...z){
     z.forEach((item) => {
         // si el valor no está incluido
         if (!arr_unicos.includes(item)) { 
-            arr_unicos.push(item);
+            //arr_unicos.push(item); -> con pusn
+            arr_unicos = [...arr_unicos, item]; // -> con spread operator
         }
     });
     return arr_unicos;
@@ -163,9 +165,10 @@ cantidad de arrays como argumentos y los combine todos en un solo array.
 function combineAllArrays(...z) {
     let arr_final = [];
 
-    z.forEach((item) => {
+    z.forEach((array) => {
         // Actualizamos arr_final con el nuevo array concatenado
-        arr_final = arr_final.concat(item); 
+        //arr_final = arr_final.concat(array);  -> con concat
+        arr_final = [...arr_final, ...array] // -> con spread operator
     });
     return arr_final;
 }
